@@ -227,14 +227,3 @@ Prisma, Vite & React communities
 ⭐ Support
 
 If you like this project, please star ⭐ the repository — it helps a lot!
-
-
----
-
-If you want next, I can:
-- Write a **perfect GitHub repo description**
-- Optimize it for **recruiters / portfolio**
-- Add **Docker + deployment docs**
-- Create a **CONTRIBUTING.md**
-
-Just tell me 💪
