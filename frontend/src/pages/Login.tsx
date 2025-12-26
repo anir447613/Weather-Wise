@@ -4,11 +4,11 @@ import { useAuthStore } from "../stores/authStore";
 import { Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-export default function Register() {
+export default function Login() {
   const navigate = useNavigate();
   const setSession = useAuthStore((s) => s.setSession);
 
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -21,33 +21,30 @@ export default function Register() {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_BASE}/auth/register`, form);
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_BASE}/auth/login`,
+        form
+      );
       setSession(res.data.token, res.data.user);
       navigate("/dashboard");
     } catch (err: any) {
-      setError(err.response?.data?.error || "Registration failed");
+      setError(err.response?.data?.error || "Login failed");
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-100 to-blue-200 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-sky-300 flex items-center justify-center p-6">
       <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
+        <h2 className="text-3xl font-bold text-center text-black-700">
+          Welcome back to
+        </h2>
         <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">
-          Create your WeatherWise account
+          Weather Wise
         </h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <input
-            type="text"
-            name="name"
-            placeholder="Your name"
-            value={form.name}
-            onChange={handleChange}
-            className="border border-blue-300 rounded-xl p-3 focus:ring-2 focus:ring-blue-500 outline-none"
-            required
-          />
           <input
             type="email"
             name="email"
@@ -75,17 +72,17 @@ export default function Register() {
             className="bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold flex justify-center items-center gap-2 transition"
           >
             {loading && <Loader2 className="animate-spin" size={18} />}
-            {loading ? "Creating account..." : "Register"}
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
         <p className="text-sm text-center mt-6 text-gray-500">
-          Already have an account?{" "}
+          Don’t have an account?{" "}
           <button
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/register")}
             className="text-blue-600 hover:underline"
           >
-            Log in
+            Register
           </button>
         </p>
       </div>
