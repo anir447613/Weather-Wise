@@ -82,7 +82,7 @@ PostgreSQL Database
 Rename .env.example to .env
 and add your relevant keys and db url
 
-🚀 Getting Started
+## 🚀 Getting Started
 1️⃣ Clone Repository
 git clone https://github.com/your-username/weatherwise.git
 cd weatherwise
